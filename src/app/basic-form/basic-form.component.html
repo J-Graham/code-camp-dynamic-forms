@@ -1,0 +1,7 @@
+<h2>Basic Dynamic Form</h2>
+<br>
+<div class="col-md-4">
+    <app-dynamic-field [field]="formConfig.LocationName" [form]="formGroup"></app-dynamic-field>
+    <app-dynamic-field [field]="formConfig.SuiteNumber" [form]="formGroup"></app-dynamic-field>
+    {{ formGroup.value | json }}
+</div>

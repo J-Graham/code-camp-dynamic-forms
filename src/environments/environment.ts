@@ -4,14 +4,9 @@
 
 export const environment = {
     app: {
-        name: 'Angular Seed',
+        name: 'Code Camp Dynamic Forms',
     },
     production: false,
-    repoUrl: 'https://github.com/chriscamac/angular-seed',
-    twitter: {
-        url: 'https://twitter.com/PilgrimSecret',
-        name: 'Chris Camac',
-    },
 };
 
 /*

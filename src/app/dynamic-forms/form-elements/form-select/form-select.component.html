@@ -1,0 +1,21 @@
+<div class="dynamic-field form-select space-for-validation" [class.has-error]="hasError()" [formGroup]="getGroup()">
+    <span class="control-label">
+        <span class="dynamic-field-label" [innerHTML]="config.labelHtml"></span>
+        <span *ngIf="showRequired()" class="errortext"> *</span>
+    </span>
+    <select #input *ngIf="selectType === selectTypes.Dropdown" [formControlName]="config.name" class="form-control">
+        <option *ngFor="let option of config.options" [ngValue]="option.Id">
+            {{ option.Name }}
+        </option>
+    </select>
+    <div *ngIf="selectType === selectTypes.RadioButtonList">
+        <div #input class="btn-group btn-group-toggle" [class.hidden]="config.options.length === 0" ngbRadioGroup
+            [formControlName]="config.name">
+            <label ngbButtonLabel *ngFor="let option of config.options" class="btn-primary">
+                <input ngbButton type="radio" [value]="option.Id">
+                {{ option.Name }}
+            </label>
+        </div>
+        <em [class.errortext]="hasError()" *ngIf="config.options.length == 0">{{getNoItemsErrorMessage()}}</em>
+    </div>
+</div>

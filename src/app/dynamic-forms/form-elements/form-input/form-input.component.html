@@ -1,0 +1,29 @@
+<div class="dynamic-field form-input space-for-validation" [formGroup]="getGroup()">
+    <span class="control-label">
+        <span class="dynamic-field-label" [innerHTML]="config.labelHtml" [class.errortext]="hasError()"></span>
+        <span *ngIf="showRequired()" class="errortext"> *</span>
+    </span>
+    <span>
+        <ng-container *ngIf="inputType === inputTypes.Textbox">
+            <input #input type="text" [attr.placeholder]="config.placeholder" [formControlName]="config.name"
+                class="form-control" [class.is-invalid]="hasError()" [maxlength]="getMaxLength()"
+                (focus)="isFocused = true" (blur)="isFocused = false" />
+        </ng-container>
+        <ng-container *ngIf="inputType === inputTypes.Textarea">
+            <textarea #input [attr.placeholder]="config.placeholder" [formControlName]="config.name"
+                class="form-control" [class.is-invalid]="hasError()" [maxlength]="getMaxLength()"
+                (focus)="isFocused = true" (blur)="isFocused = false"></textarea>
+        </ng-container>
+        <span *ngIf="hasMaxLength()" [style.visibility]="isFocused && hasMaxLength() ? null : 'hidden'"
+            class="small pull-right" [class.errortext]="hasError('maxlength')">{{ getMaxLengthText() }}</span>
+        <div *ngIf="config.validators">
+            <div *ngIf="!showRequired() && hasError('required')" class="small errortext" [style.position]="'absolute'">
+                {{ config.label }} is required
+            </div>
+            <div *ngIf="hasError('minlength')" class="small errortext" [style.position]="'absolute'">
+                {{ config.label }} must be at least
+                {{ config.validators.minlength }} characters
+            </div>
+        </div>
+    </span>
+</div>

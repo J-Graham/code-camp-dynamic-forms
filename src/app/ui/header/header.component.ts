@@ -7,8 +7,6 @@ import { environment } from '../../../environments/environment';
 })
 export class HeaderComponent implements OnInit {
     app = environment.app;
-    repoUrl = environment.repoUrl;
-    twitter = environment.twitter;
 
     constructor() {}
 
